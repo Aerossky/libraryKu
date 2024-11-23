@@ -41,6 +41,25 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Buku</span>
                 </a>
             </li>
+
+            {{-- Kategori --}}
+            <li>
+                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        fill="currentColor" viewBox="0 0 20 18" viewBox="-7.5 0 32 32" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <title>category</title>
+                            <path
+                                d="M2.594 4.781l-1.719 1.75h15.5l-1.719-1.75h-12.063zM17.219 13.406h-17.219v-6.031h17.219v6.031zM12.063 11.688v-1.719h-6.875v1.719h0.844v-0.875h5.156v0.875h0.875zM17.219 20.313h-17.219v-6.031h17.219v6.031zM12.063 18.594v-1.75h-6.875v1.75h0.844v-0.875h5.156v0.875h0.875zM17.219 27.188h-17.219v-6h17.219v6zM12.063 25.469v-1.719h-6.875v1.719h0.844v-0.875h5.156v0.875h0.875z">
+                            </path>
+                        </g>
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Kategori</span>
+                </a>
+            </li>
         </ul>
     </div>
 </aside>

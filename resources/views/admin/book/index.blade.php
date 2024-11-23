@@ -30,6 +30,8 @@
     {{-- Alert --}}
     @if (session('success'))
         <x-ui.alert type="success" :message="session('success')" />
+    @elseif (session('error'))
+        <x-ui.alert type="error" :message="session('error')" />
     @endif
 
     {{-- Table --}}
