@@ -72,7 +72,7 @@
                                 </option>
                                 <option value="approved" {{ $data->status == 'approved' ? 'selected' : '' }}>Approved
                                 </option>
-                                <option value="rejected" {{ $data->status == 'rejected' ? 'selected' : '' }}>Rejected
+                                <option value="rejected" {{ $data->status == 'rejected' ? 'selected' : '' }}>Returned
                                 </option>
                             </select>
                         </form>

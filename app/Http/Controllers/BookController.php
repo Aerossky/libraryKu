@@ -15,10 +15,11 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        // Ambil nilai pencarian dari input
+        // Ambil nilai pencarian dan kategori dari input
         $search = $request->input('search');
+        $categoryId = $request->input('category_id');
 
-        // Query dengan filter pencarian
+        // Query dengan filter pencarian dan kategori
         $books = Book::select('id', 'title', 'author', 'publisher', 'isbn', 'cover_image')
             ->with('categories')
             ->when($search, function ($query, $search) {
@@ -27,14 +28,22 @@ class BookController extends Controller
                     ->orWhere('publisher', 'like', '%' . $search . '%')
                     ->orWhere('isbn', 'like', '%' . $search . '%');
             })
+            // Tambahkan filter berdasarkan category_id jika ada
+            ->when($categoryId, function ($query, $categoryId) {
+                return $query->whereHas('categories', function ($query) use ($categoryId) {
+                    $query->where('category_id', $categoryId);
+                });
+            })
             ->paginate(10);
 
-        // Tambahkan parameter pencarian ke pagination agar tetap ada di setiap halaman
-        $books->appends(['search' => $search]);
+        // Tambahkan parameter pencarian dan kategori ke pagination agar tetap ada di setiap halaman
+        $books->appends(['search' => $search, 'category_id' => $categoryId]);
 
-        return view('admin.book.index', compact('books', 'search'));
+        // category
+        $categories = Category::select('id', 'name')->get();
+
+        return view('admin.book.index', compact('books', 'categories', 'search', 'categoryId'));
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -91,7 +100,7 @@ class BookController extends Controller
     public function show(string $id)
     {
         //
-        $book = Book::with('categories')->with('categories')->find($id);
+        $book = Book::with('categories')->with('categories', 'user')->find($id);
 
         // Jika buku tidak ditemukan, redirect ke halaman daftar buku
         if (!$book) {
@@ -146,7 +155,12 @@ class BookController extends Controller
         }
 
         // Proses upload cover image jika ada
-        $coverImagePath = $this->handleCoverImageUpload($request);
+        if ($request->hasFile('cover_image')) {
+            Storage::disk('public')->delete($book->cover_image);
+            $coverImagePath = $this->handleCoverImageUpload($request); // Proses upload cover image
+        } else {
+            $coverImagePath = $book->cover_image; // Tidak ada gambar baru, pakai gambar lama
+        }
 
 
         // Simpan data buku

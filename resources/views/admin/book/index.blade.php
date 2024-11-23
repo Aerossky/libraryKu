@@ -29,6 +29,24 @@
         </form>
     </div>
 
+    {{-- Filter --}}
+    <div class="mb-4">
+        <form action="{{ route('book.index') }}" method="GET" class="flex items-center space-x-2">
+            <select name="category_id" class="border border-gray-300 rounded px-3 py-2 focus:ring focus:ring-blue-200">
+                <option value="">Semua Kategori</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            </select>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Filter
+            </button>
+        </form>
+    </div>
+
 
     {{-- Table --}}
     <div class="overflow-x-auto">

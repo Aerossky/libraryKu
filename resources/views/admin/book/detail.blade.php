@@ -47,6 +47,14 @@
                         @endforeach
                     </p>
                 </div>
+                <div class="">
+                    {{-- buku sedang dipinjam --}}
+                    @if ($book->user)
+                        <p class="text-gray-600"><span class="font-medium">Peminjam:</span> {{ $book->user->name }}</p>
+                    @else
+                        <p class="text-gray-600"><span class="font-medium">Peminjam:</span> Tidak ada peminjam</p>
+                    @endif
+                </div>
             </div>
 
             {{-- Book Description --}}
