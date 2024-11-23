@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,7 +26,6 @@ class BookController extends Controller
                     ->orWhere('author', 'like', '%' . $search . '%')
                     ->orWhere('publisher', 'like', '%' . $search . '%')
                     ->orWhere('isbn', 'like', '%' . $search . '%');
-
             })
             ->paginate(10);
 
@@ -196,6 +196,52 @@ class BookController extends Controller
 
         // Redirect ke halaman daftar buku dengan pesan sukses
         return redirect()->route('book.index')->with('success', 'Buku berhasil dihapus');
+    }
+
+    public function borrowed(Request $request)
+    {
+        $userId = $request->input('user_id');
+
+        // Ambil buku yang sudah dipinjam dan statusnya
+        $books = Book::with(['user'])
+            ->when($userId, function ($query, $userId) {
+                return $query->where('borrowed_by', $userId);
+            })
+            ->whereNotNull('borrowed_by')  // Hanya yang sudah dipinjam
+            ->orderByRaw("FIELD(status, 'pending') DESC")
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $users = User::orderBy('name')->get();
+
+        return view('admin.borrow.index', compact('books', 'users'));
+    }
+
+
+
+    public function editStatus($id)
+    {
+        $book = Book::findOrFail($id);
+        return view('books.edit-status', compact('book'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $book = Book::findOrFail($id);
+        $request->validate([
+            'status' => 'required|in:pending,approved,rejected',
+        ]);
+
+        $book->status = $request->status;
+
+        if ($request->status === 'rejected') {
+            $book->borrowed_by = NULL;
+            $book->status = 'pending';
+        }
+
+        $book->save();
+
+        return redirect()->route('books.borrowed')->with('success', 'Status berhasil diperbarui.');
     }
 
     private function handleCoverImageUpload($request)

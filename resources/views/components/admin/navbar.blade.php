@@ -24,8 +24,8 @@
                             class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . $image) }}"
-                                alt="user {{ $name }}">
+                            <img class="w-8 h-8 rounded-full" src="{{ asset('storage/' . Auth::user()->user_image) }}"
+                                alt="user {{ Auth::user()->name }}">
                         </button>
                     </div>
                     <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
@@ -33,11 +33,11 @@
                         <div class="px-4 py-3" role="none">
                             {{-- name --}}
                             <p class="text-sm text-gray-900" role="none">
-                                {{ $name }}
+                                {{ Auth::user()->name }}
                             </p>
                             {{-- email --}}
                             <p class="text-sm font-medium text-gray-900 truncate" role="none">
-                                {{ $email }}
+                                {{ Auth::user()->email }}
                             </p>
                         </div>
                         <ul class="py-1" role="none">
@@ -46,8 +46,13 @@
                                     role="menuitem">Dashboard</a>
                             </li>
                             <li>
-                                <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    role="menuitem">Keluar</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+                                        Keluar
+                                    </button>
+                                </form>
                             </li>
                         </ul>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
@@ -50,6 +51,28 @@ class PublicController extends Controller
 
         return view('public.buku', compact('books', 'categories', 'search', 'categoryFilter'));
     }
+
+    public function borrowed()
+    {
+        $books = Book::where('borrowed_by', Auth::user()->id)->paginate(6);
+        $categories = Category::all();
+        return view('public.pinjaman', compact('books', 'categories'));
+    }
+
+    public function borrow(string $id)
+    {
+        // Ambil data buku yang akan dipinjam
+        $book = Book::findOrFail($id);
+
+        // Simpan id user yang meminjam buku
+        $book->borrowed_by = Auth::user()->id;
+        $book->borrowed_at = now();
+        $book->save();
+
+        return redirect()->back();
+    }
+
+
 
 
 

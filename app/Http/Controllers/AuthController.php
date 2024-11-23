@@ -65,7 +65,13 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Jika login berhasil
-            return redirect()->intended('/'); // Ganti dengan rute yang sesuai
+
+            // jika role admin
+            if (Auth::user()->role == 'admin') {
+                return redirect()->intended('/admin/user'); // Ganti dengan rute yang sesuai
+            } elseif (Auth::user()->role == 'member') {
+                return redirect()->intended('/'); // Ganti dengan rute yang sesuai
+            }
         }
 
         // Jika login gagal

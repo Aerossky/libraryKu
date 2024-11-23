@@ -55,8 +55,15 @@
                         {{-- Pinjam Buku --}}
                         @if (Auth::check())
                             <!-- Jika pengguna sudah login, tampilkan tombol pinjam -->
-                            <a href=""
-                                class="mt-3 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">Pinjam</a>
+                            <form action="{{ route('book.borrow', $book->id) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('POST')
+                                <!-- Tombol Pinjam Buku -->
+                                <button type="submit"
+                                    class="mt-3 inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                                    Pinjam
+                                </button>
+                            </form>
                         @else
                             <!-- Jika pengguna belum login, arahkan ke halaman login -->
                             <a href="{{ route('login') }}"

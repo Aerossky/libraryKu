@@ -27,7 +27,7 @@
                                     @csrf
                                     <button type="submit"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-                                        Sign out
+                                        Keluar
                                     </button>
                                 </form>
                             </li>
@@ -60,7 +60,7 @@
                             aria-current="page">Beranda</a>
                     </li>
                     <li>
-                        <a href="#layanan_kami"
+                        <a href="/#layanan_kami"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Layanan
                             Kami</a>
                     </li>
@@ -70,7 +70,7 @@
                     </li>
 
                     <li>
-                        <a href="/book"
+                        <a href="/borrowed"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Pinjaman
                             Ku </a>
                     </li>

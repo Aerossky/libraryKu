@@ -14,19 +14,36 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
 
-Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
+Route::middleware(['guest'])->group(function () {
+    Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [AuthController::class, 'login']);
+});
 
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 // route for book
 Route::get('/book', [PublicController::class, 'book']);
+Route::post('/book/borrow/{id}', [PublicController::class, 'borrow'])->name('book.borrow');
 Route::resource('public', PublicController::class);
 
-// route group for admin
-Route::prefix('admin')->group(function () {
-    Route::resource('user', UserController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/borrowed', [PublicController::class, 'borrowed']);
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
 
-    Route::resource('book', BookController::class);
+// Route group untuk admin
+Route::middleware(['role'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        // User Controller
+        Route::resource('user', UserController::class);
 
-    Route::resource('category', CategoryController::class);
+        // Book Controller
+        // Route untuk melihat list peminjaman buku
+        Route::get('/books/borrowed', [BookController::class, 'borrowed'])->name('books.borrowed');
+
+        // Route untuk memperbarui status buku
+        Route::patch('/books/{id}/status', [BookController::class, 'updateStatus'])->name('books.updateStatus');
+        Route::resource('book', BookController::class);
+
+        // Category Controller
+        Route::resource('category', CategoryController::class);
+    });
 });

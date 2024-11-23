@@ -3,7 +3,7 @@
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white">
         <ul class="space-y-2 font-medium">
-            <li>
+            {{-- <li>
                 <a href="" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -14,7 +14,7 @@
                     </svg>
                     <span class="ms-3">Dashboard</span>
                 </a>
-            </li>
+            </li> --}}
             {{-- Pengguna --}}
             <li>
                 <a href="{{ route('user.index') }}"
@@ -65,6 +65,19 @@
             </li>
 
             {{-- Peminjaman --}}
+            <li>
+                <a href="{{ route('books.borrowed') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm1 4h10v2H5V6zm0 4h7v2H5v-2z">
+                        </path>
+                    </svg>
+                    <span class="ml-3">Peminjaman</span>
+                </a>
+            </li>
+
 
         </ul>
     </div>
