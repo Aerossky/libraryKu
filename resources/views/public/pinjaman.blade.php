@@ -2,7 +2,7 @@
     <div class="container mx-auto p-6">
         {{-- Header dan Pencarian --}}
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
-            <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800">Daftar Pinjaman Bukumu</h2>
+            <h2 class="text-2xl sm:text-3xl font-semibold text-gray-800">Daftar Pinjaman Buku</h2>
         </div>
 
         {{-- Tampilkan Buku --}}

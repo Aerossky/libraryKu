@@ -69,11 +69,13 @@
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Buku</a>
                     </li>
 
-                    <li>
-                        <a href="/borrowed"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Pinjaman
-                            Ku </a>
-                    </li>
+                    @if (Auth::check())
+                        <li>
+                            <a href="/borrowed"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0">Pinjaman
+                                Ku </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
