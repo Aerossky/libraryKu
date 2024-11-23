@@ -54,6 +54,11 @@
                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $loop->iteration }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $data->name }}</td>
                     <td class="whitespace-nowrap px-4 py-2 flex space-x-2 justify-center items-center">
+                        <!-- Button View -->
+                        <a href="{{ route('category.show', $data->id) }}"
+                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
+                            View
+                        </a>
                         <!-- Button Edit -->
                         <a href="{{ route('category.edit', $data) }}"
                             class="inline-block rounded bg-yellow-500 px-4 py-2 text-xs font-medium text-white hover:bg-yellow-600">
@@ -76,5 +81,10 @@
             @endforeach
         </tbody>
     </table>
+
+    {{-- Pagination --}}
+    <div class="mt-4">
+        {{ $categories->links() }}
+    </div>
 
 </x-admin.layout>

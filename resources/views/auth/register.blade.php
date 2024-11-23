@@ -17,11 +17,6 @@
 
     <div class="flex justify-center items-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-            <div class="flex flex-col items-center justify-center mb-4">
-                <img src="{{ asset('assets/images/logo/type_logo.png') }}" alt="Logo"
-                    class="w-1/3 sm:w-1/4 md:w-2/6 lg:w-3/6 xl:w-4/6 mb-4">
-            </div>
-
             <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Buat Akun</h2>
             <p class="text-sm text-gray-600 mb-4 text-center">Lengkapi formulir berikut untuk mendaftar.</p>
 
@@ -36,40 +31,38 @@
                 </div>
             @endif
 
-            <form action="" method="POST" class="space-y-6">
+            <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                 @csrf
-                @method('POST')
 
-                <!-- Username -->
+                <!-- Name -->
                 <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" id="username" name="username" required
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" required
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Nama pengguna Anda" value="{{ old('username') }}">
-                </div>
-
-                <!-- First Name -->
-                <div>
-                    <label for="first_name" class="block text-sm font-medium text-gray-700">Nama Depan</label>
-                    <input type="text" id="first_name" name="first_name" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Nama depan Anda" value="{{ old('first_name') }}">
-                </div>
-
-                <!-- Last Name -->
-                <div>
-                    <label for="last_name" class="block text-sm font-medium text-gray-700">Nama Belakang</label>
-                    <input type="text" id="last_name" name="last_name" required
-                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Nama belakang Anda" value="{{ old('last_name') }}">
+                        placeholder="Nama Lengkap Anda">
                 </div>
 
                 <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" required
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" required
                         class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Email Anda" value="{{ old('email') }}">
+                        placeholder="Email Anda">
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Nomor Telepon</label>
+                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" required
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                        placeholder="Nomor Telepon Anda">
+                </div>
+
+                <!-- User Image -->
+                <div>
+                    <label for="user_image" class="block text-sm font-medium text-gray-700">Foto Profil</label>
+                    <input type="file" id="user_image" name="user_image"
+                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
                 </div>
 
                 <!-- Password -->
@@ -87,6 +80,11 @@
                 </button>
 
             </form>
+
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">Sudah punya akun? <a href="{{ route('login') }}"
+                        class="text-red-500 hover:underline">Masuk</a></p>
+            </div>
         </div>
     </div>
 </body>

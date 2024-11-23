@@ -103,5 +103,10 @@
         </table>
     </div>
 
+    {{-- Pagination --}}
+    <div class="mt-4">
+        {{ $books->links('pagination::tailwind') }}
+    </div>
+
 
 </x-admin.layout>

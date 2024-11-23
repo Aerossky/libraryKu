@@ -11,12 +11,24 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $users = User::select('id', 'name', 'email', 'phone', 'role', 'user_image')->get();
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
 
-        return view('admin.user.index', compact('users'));
+        // Query dengan filter pencarian
+        $users = User::select('id', 'name', 'email', 'phone', 'role', 'user_image')
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%');
+            })
+            ->paginate(10);
+
+        // Tambahkan parameter pencarian ke pagination agar tetap ada di setiap halaman
+        $users->appends(['search' => $search]);
+
+        return view('admin.user.index', compact('users', 'search'));
     }
 
     /**

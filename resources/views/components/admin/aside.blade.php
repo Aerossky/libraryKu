@@ -17,7 +17,8 @@
             </li>
             {{-- Pengguna --}}
             <li>
-                <a href="" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                <a href="{{ route('user.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path
@@ -30,7 +31,8 @@
 
             {{-- Buku --}}
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                <a href="{{ route('book.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                         role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 18">
@@ -44,7 +46,8 @@
 
             {{-- Kategori --}}
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
+                <a href="{{ route('category.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
                         fill="currentColor" viewBox="0 0 20 18" viewBox="-7.5 0 32 32" version="1.1"
                         xmlns="http://www.w3.org/2000/svg">
@@ -60,6 +63,9 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Kategori</span>
                 </a>
             </li>
+
+            {{-- Peminjaman --}}
+
         </ul>
     </div>
 </aside>

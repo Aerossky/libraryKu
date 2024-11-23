@@ -12,12 +12,29 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $books = Book::select('id', 'title', 'author', 'publisher', 'isbn', 'cover_image')->with('categories')->get();
-        return view('admin.book.index', compact('books'));
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
+
+        // Query dengan filter pencarian
+        $books = Book::select('id', 'title', 'author', 'publisher', 'isbn', 'cover_image')
+            ->with('categories')
+            ->when($search, function ($query, $search) {
+                return $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('author', 'like', '%' . $search . '%')
+                    ->orWhere('publisher', 'like', '%' . $search . '%')
+                    ->orWhere('isbn', 'like', '%' . $search . '%');
+
+            })
+            ->paginate(10);
+
+        // Tambahkan parameter pencarian ke pagination agar tetap ada di setiap halaman
+        $books->appends(['search' => $search]);
+
+        return view('admin.book.index', compact('books', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.

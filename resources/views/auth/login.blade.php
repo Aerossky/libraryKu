@@ -18,14 +18,10 @@
 
     <div class="flex justify-center items-center min-h-screen">
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-            <div class="flex flex-col items-center justify-center mb-2">
-                <img src="{{ asset('assets/images/logo/type_logo.png') }}" alt="Logo"
-                    class="w-1/3 sm:w-1/4 md:w-2/6 lg:w-3/6 xl:w-4/6 mb-4">
-            </div>
 
-            <p class="text-sm text-gray-600 mb-4 text-center">Halaman ini hanya untuk login admin. Jika Anda bukan
-                admin,
-                harap hubungi administrator sistem.</p>
+            <p class="text-gray-600 mb-4 text-center text-xl font-bold">
+                Library Ku Login
+            </p>
 
             {{-- Error message --}}
             @if ($errors->any())
@@ -58,8 +54,12 @@
                     class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 me-2 mb-2 focus:outline-none transition-all duration-300 ease-in-out">
                     Masuk
                 </button>
-
             </form>
+
+            <div class="text-sm text-center">
+                <p class="text-sm text-gray-600">Belum punya akun? <a href="{{ route('register') }}"
+                        class="text-red-500 hover:underline">Buat akun</a></p>
+            </div>
         </div>
     </div>
 

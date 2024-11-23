@@ -10,12 +10,24 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $categories = Category::select('id', 'name')->get();
-        return view('admin.category.index', compact('categories'));
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
+
+        // Query data kategori dengan pencarian
+        $categories = Category::select('id', 'name')
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->paginate(10); // Batasi 10 item per halaman
+
+        // Tambahkan parameter pencarian ke pagination agar tetap ada
+        $categories->appends(['search' => $search]);
+
+        return view('admin.category.index', compact('categories', 'search'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,7 +58,16 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        //
+        $category = Category::find($id);
+
+        // ambil buku yang terkait dengan kategori
+        $books = $category->books()->get();
+
+        return view('admin.category.detail', compact('category', 'books'));
+    }
 
     /**
      * Show the form for editing the specified resource.

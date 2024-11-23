@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Default Title' }}</title>
+    <title>LibraryKu</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Font --}}
@@ -18,14 +18,13 @@
     <!-- Header -->
     <x-public.header />
 
-
     <!-- Main Content -->
     <main class="flex-grow">
         {{ $slot }}
     </main>
 
     <!-- Footer -->
-
+    <x-public.footer />
 
 </body>
 
