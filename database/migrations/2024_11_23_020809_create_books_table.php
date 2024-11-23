@@ -24,6 +24,7 @@ return new class extends Migration
             // relationship with users table (borrowed_by)
             $table->foreignId('borrowed_by')->nullable()->constrained('users')->onDelete('set null');
             $table->date('borrowed_at')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }
