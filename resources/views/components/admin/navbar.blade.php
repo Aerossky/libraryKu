@@ -14,8 +14,7 @@
                     </svg>
                 </button>
                 <a href="" class="flex ms-2 md:me-24">
-                    <img src="{{ asset('assets/images/logo/type_logo.png') }}" class="h-8 me-3"
-                        alt="Logo Perusahaan Terpercaya" />
+                    <span class="text-2xl font-semibold">LibraryKu</span>
                 </a>
             </div>
             <div class="flex items-center">

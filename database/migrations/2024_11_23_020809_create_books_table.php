@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 100);
-            $table->string('author', 100);
-            $table->string('publisher', 100);
-            $table->date('published_date');
-            $table->string('isbn', 20)->unique();
-            $table->string('language', 20);
-            $table->text('description');
-            $table->string('cover_image');
+            $table->string('title', 100)->required();
+            $table->string('author', 100)->required();
+            $table->string('publisher', 100)->required();
+            $table->date('published_date')->required();
+            $table->string('isbn', 20)->unique()->required();
+            $table->string('language', 20)->nullable();
+            $table->text('description')->required();
+            $table->string('cover_image')->required();
             // relationship with users table (borrowed_by)
             $table->foreignId('borrowed_by')->nullable()->constrained('users')->onDelete('set null');
             $table->date('borrowed_at')->nullable();

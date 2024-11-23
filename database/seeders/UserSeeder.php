@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('adminpassword'), // mengenkripsi password
                 'phone' => '081234567890',
                 'role' => 'admin', // role admin
+                'user_image' => 'default.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('memberpassword'), // mengenkripsi password
                 'phone' => '089876543210',
                 'role' => 'member', // role member
+                'user_image' => 'default.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]
