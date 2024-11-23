@@ -109,6 +109,6 @@ class CategoryController extends Controller
         // sync relasi kategori pada buku
         $category->books()->detach();
 
-        return redirect()->route('category.index')->with('success', 'Category deleted successfully.');
+        return redirect()->route('category.index')->with('success', 'Kategori sukses dihapus.');
     }
 }

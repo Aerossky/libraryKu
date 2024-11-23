@@ -71,7 +71,18 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        //
+        $book = Book::with('categories')->with('categories')->find($id);
+
+        // Jika buku tidak ditemukan, redirect ke halaman daftar buku
+        if (!$book) {
+            return redirect()->route('book.index')->with('error', 'Buku tidak ditemukan');
+        }
+
+        return view('admin.book.detail', compact('book'));
+    }
 
     /**
      * Show the form for editing the specified resource.

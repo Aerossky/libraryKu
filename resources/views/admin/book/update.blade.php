@@ -2,7 +2,7 @@
     <div class="mx-auto p-6 bg-white rounded-lg shadow-md">
         <div class="flex justify-between items-center mb-6">
             {{-- page title --}}
-            <h2 class="text-2xl font-semibold text-gray-700">Update Buku</h2>
+            <h2 class="text-2xl font-semibold text-gray-700">Ubah Buku</h2>
             {{-- back button --}}
             <a href="{{ route('book.index') }}"
                 class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Kembali</a>
@@ -29,7 +29,7 @@
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" name="title" id="title"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    value="{{ old('title', $book->title) }}" required>
+                    value="{{ old('title', $book->title) }}">
             </div>
 
             {{-- Author --}}
@@ -37,7 +37,7 @@
                 <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
                 <input type="text" name="author" id="author"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    value="{{ old('author', $book->author) }}" required>
+                    value="{{ old('author', $book->author) }}">
             </div>
 
             {{-- Publisher --}}
@@ -45,7 +45,7 @@
                 <label for="publisher" class="block text-sm font-medium text-gray-700">Publisher</label>
                 <input type="text" name="publisher" id="publisher"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    value="{{ old('publisher', $book->publisher) }}" required>
+                    value="{{ old('publisher', $book->publisher) }}">
             </div>
 
             {{-- Published Date --}}
@@ -53,7 +53,7 @@
                 <label for="published_date" class="block text-sm font-medium text-gray-700">Published Date</label>
                 <input type="date" name="published_date" id="published_date"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    value="{{ old('published_date', $book->published_date) }}" required>
+                    value="{{ old('published_date', $book->published_date) }}">
             </div>
 
             {{-- ISBN --}}
@@ -61,7 +61,7 @@
                 <label for="isbn" class="block text-sm font-medium text-gray-700">ISBN</label>
                 <input type="number" name="isbn" id="isbn"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    value="{{ old('isbn', $book->isbn) }}" required>
+                    value="{{ old('isbn', $book->isbn) }}">
             </div>
 
             {{-- Language --}}

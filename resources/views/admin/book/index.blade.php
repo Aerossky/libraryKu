@@ -8,8 +8,10 @@
         </a>
     </div>
 
-    {{-- alert --}}
-    @if (session('error'))
+    {{-- Alert --}}
+    @if (session('success'))
+        <x-ui.alert type="success" :message="session('success')" />
+    @elseif (session('error'))
         <x-ui.alert type="error" :message="session('error')" />
     @endif
 
@@ -27,12 +29,6 @@
         </form>
     </div>
 
-    {{-- Alert --}}
-    @if (session('success'))
-        <x-ui.alert type="success" :message="session('success')" />
-    @elseif (session('error'))
-        <x-ui.alert type="error" :message="session('error')" />
-    @endif
 
     {{-- Table --}}
     <div class="overflow-x-auto">
@@ -78,7 +74,7 @@
                         </td>
                         <td class="whitespace-nowrap px-4 py-2 flex space-x-2 justify-center items-center">
                             <!-- Button View -->
-                            <a href="#"
+                            <a href="{{ route('book.show', $data->id) }}"
                                 class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
                                 View
                             </a>

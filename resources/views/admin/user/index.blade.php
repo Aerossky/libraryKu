@@ -3,10 +3,17 @@
     {{-- Title --}}
     <div class="flex justify-between items-center mb-4">
         <h1 class="text-2xl font-bold">Pengguna</h1>
-        <a href="" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <a href="{{ route('user.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Tambah Pengguna
         </a>
     </div>
+
+    {{-- Alert --}}
+    @if (session('success'))
+        <x-ui.alert type="success" :message="session('success')" />
+    @elseif (session('error'))
+        <x-ui.alert type="error" :message="session('error')" />
+    @endif
 
     {{-- Search Form --}}
     <div class="w-full flex justify-center">
@@ -52,25 +59,22 @@
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $data->phone }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $data->role }}</td>
                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                        <img src="{{ asset('storage/' . $data->image) }}" alt="{{ $data->name }}"
+                        <img src="{{ asset('storage/' . $data->user_image) }}" alt="{{ $data->user_image }}"
                             class="w-12 h-12 rounded-full">
                     </td>
                     <td class="whitespace-nowrap px-4 py-2 flex space-x-2 justify-center items-center">
-                        <!-- Button View -->
-                        <a href="#"
-                            class="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
-                            View
-                        </a>
 
                         <!-- Button Edit -->
-                        <a href="#"
+                        <a href="{{ route('user.edit', $data->id) }}"
                             class="inline-block rounded bg-yellow-500 px-4 py-2 text-xs font-medium text-white hover:bg-yellow-600">
                             Ubah
                         </a>
 
                         <!-- Button Delete -->
-                        <form action="#" method="POST" class="inline"
+                        <form action="{{ route('user.destroy', $data->id) }}" method="POST" class="inline"
                             onsubmit="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
+                            @csrf
+                            @method('DELETE')
                             <button type="submit"
                                 class="inline-block rounded bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-red-600">
                                 Hapus
