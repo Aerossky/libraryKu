@@ -44,6 +44,7 @@
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Author</th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th>
                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User</th>
+                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Tanggal Pinjam</th>
                 <th class="px-4 py-2"></th>
             </tr>
         </thead>
@@ -80,6 +81,8 @@
                     @if ($data->user->name)
                         <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $data->user->name }}</td>
                     @endif
+
+                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $data->borrowed_at }}</td>
                 </tr>
             @endforeach
         </tbody>

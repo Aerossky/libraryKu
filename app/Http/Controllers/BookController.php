@@ -226,7 +226,8 @@ class BookController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        $users = User::orderBy('name')->get();
+        $users = User::whereNotIn('role', ['admin'])->orderBy('name')->get();
+
 
         return view('admin.borrow.index', compact('books', 'users'));
     }
